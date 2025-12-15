@@ -20,7 +20,8 @@ public class TestStatsBuilders {
     private static final int DEFAULT_DEFENSE_MIN = 0;
     private static final int DEFAULT_DEFENSE_MAX = 0;
     private static final double DEFAULT_HEAL_CHANCE = 0.00;
-
+    private static final int DEFAULT_MIN_FIRE_MULTIPLIER = 1;
+    private static final int DEFAULT_MAX_FIRE_MULTIPLIER = 3;
 
     private int maxHp = DEFAULT_MAX_HP;
     private int minDmg = DEFAULT_MIN_DMG;
@@ -32,7 +33,8 @@ public class TestStatsBuilders {
     private double healChance = DEFAULT_HEAL_CHANCE;
     private int minHeal = DEFAULT_HEAL_MIN;
     private int maxHeal = DEFAULT_HEAL_MAX;
-
+    public final int minFireMultiplier = DEFAULT_MIN_FIRE_MULTIPLIER;
+    public final int maxFireMultuplier = DEFAULT_MAX_FIRE_MULTIPLIER;
 
 
     public TestStatsBuilders withHp(int max) {
@@ -68,7 +70,7 @@ public class TestStatsBuilders {
 
     public Stats build() {
         return new Stats(maxHp, minDmg, maxDmg, minDefense, maxDefense, critChance, critMultiplier,
-                minHeal, maxHeal, healChance);
+                minHeal, maxHeal, healChance, minFireMultiplier, maxFireMultuplier);
     }
 
 

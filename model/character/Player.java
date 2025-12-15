@@ -35,9 +35,7 @@ public class Player {
         return name;
     }
 
-    public int outgoingDamage() {
-        return base;
-    }
+
 
     public int getHp() {
         return hp;
@@ -94,8 +92,10 @@ public class Player {
 
 
         boolean crit = (dmg != base);
-
-        if (log != null) {
+        boolean blocked = (dmg > 0 && dealt == 0);
+        if (blocked && log != null) {
+            log.add(BattleEvent.blocked(this, target));
+        } else if (log != null) {
             log.add(BattleEvent.hit(this, target, dealt, crit));
 
             if (!target.isAlive())
@@ -105,16 +105,19 @@ public class Player {
 
         }
         return dealt;
+
+
     }
 
     protected int adjustDamage(int base, Player target) {
 
-        return Math.max(0, base - target.getDefense());
+        return Math.max(0, base);
     }
 
     protected int applyDamage(Player target, int dmg) {
+        int defense = target.getDefense();
         int before = target.hp;
-        target.hp = Math.max(0, before - dmg);
+        target.hp = Math.max(0, before - Math.max(0, dmg - defense));
         return before - target.hp;
 
     }

@@ -8,6 +8,10 @@ public class Mage extends Player {
         super(name, stats);
     }
 
+    @Override
+    protected int adjustDamage(int base, Player target) {
 
+        return base;
+    }
 
 }

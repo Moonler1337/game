@@ -68,6 +68,24 @@ class PlayerAttackTest {
         }
     }
 
+    @Test
+    void dealtRangeCheck() {
+        Player attacker = TestStatsBuilders.create("warrior", "w1");
+        Player defender = TestStatsBuilders.create("healer", "h2");
+        int counter = 1;
+        for (int i = 0; i < 100; i++) {
+            int hpBefore = defender.getHp();
+            int dealt = attacker.attack(defender, null);
+            if (!defender.isAlive()) {
+                defender = TestStatsBuilders.create("healer", "h2" + ++counter);
+
+            }
+
+            assertTrue(dealt >= 0 && dealt <= hpBefore);
+        }
+
+    }
+
 
 
 }

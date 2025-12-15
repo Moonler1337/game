@@ -11,6 +11,8 @@ public final class Stats {
    private static final int DEFAULT_DEFENSE_MIN = 0;
    private static final int DEFAULT_DEFENSE_MAX = 0;
    private static final double DEFAULT_HEAL_CHANCE = 0.00;
+   private static final int DEFAULT_MIN_FIRE_MULTIPLIER = 1;
+   private static final int DEFAULT_MAX_FIRE_MULTIPLIER = 3;
 
    public final int maxHp;
    public final int minDmg;
@@ -22,9 +24,12 @@ public final class Stats {
    public final double healChance;
    public final int minHeal;
    public final int maxHeal;
+   public final int minFireMultiplier;
+   public final int maxFireMultuplier;
 
    public Stats(int maxHp, int minDmg, int maxDmg, int minDefense, int maxDefense,
-         double critChance, int critMultiplier, int minHeal, int maxHeal, double healChance) {
+         double critChance, int critMultiplier, int minHeal, int maxHeal, double healChance,
+         int minFireMultiplier, int maxFireMultuplier) {
       if (minDmg < 0)
          throw new IllegalArgumentException(" minDmg < 0! \n minDmg = " + minDmg);
       if (maxDmg < minDmg)
@@ -61,6 +66,9 @@ public final class Stats {
       this.minHeal = minHeal;
       this.maxHeal = maxHeal;
       this.healChance = healChance;
+      this.minFireMultiplier = minFireMultiplier;
+      this.maxFireMultuplier = maxFireMultuplier;
+
 
    }
 
@@ -79,6 +87,8 @@ public final class Stats {
       double healChance = DEFAULT_HEAL_CHANCE;
       int minHeal = DEFAULT_HEAL_MIN;
       int maxHeal = DEFAULT_HEAL_MAX;
+      int minFireMultiplier = DEFAULT_MIN_FIRE_MULTIPLIER;
+      int maxFireMultuplier = DEFAULT_MAX_FIRE_MULTIPLIER;
 
 
       public Builder hp(int max) {
@@ -112,9 +122,15 @@ public final class Stats {
 
       }
 
+      public Builder fire(int minFireMultiplier, int maxFireMultuplier) {
+         this.maxFireMultuplier = maxFireMultuplier;
+         this.minFireMultiplier = minFireMultiplier;
+         return this;
+      }
+
       public Stats build() {
          return new Stats(maxHp, minDmg, maxDmg, minDefense, maxDefense, critChance, critMultiplier,
-               minHeal, maxHeal, healChance);
+               minHeal, maxHeal, healChance, minFireMultiplier, maxFireMultuplier);
       }
 
    }
