@@ -1,4 +1,4 @@
-package combat;
+package model.combat;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,11 +1,11 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import combat.BattleEvent;
-import combat.BattleLog;
 import model.stats.Stats;
 import model.character.Player;
 import model.character.PlayerFactory;
+import model.combat.BattleEvent;
+import model.combat.BattleLog;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;

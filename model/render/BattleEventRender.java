@@ -1,8 +1,8 @@
 package model.render;
 
 import java.util.Random;
-import combat.BattleEvent;
-import combat.BattleLog;
+import model.combat.BattleEvent;
+import model.combat.BattleLog;
 import model.stats.Stats;
 import java.util.List;
 

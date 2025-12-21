@@ -1,4 +1,4 @@
-package combat;
+package model.combat;
 
 import model.character.Player;
 

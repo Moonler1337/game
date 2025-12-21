@@ -1,9 +1,9 @@
 package model.character;
 
 import java.util.Random;
+import model.combat.BattleEvent;
+import model.combat.BattleLog;
 import model.render.BattleEventRender;
-import combat.BattleEvent;
-import combat.BattleLog;
 import model.stats.Stats;
 
 public class Player {
