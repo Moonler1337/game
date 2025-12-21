@@ -1,6 +1,7 @@
 package model.character;
 
 import java.util.Random;
+import model.character.PlayerType;
 
 import model.stats.Stats;
 
@@ -8,15 +9,20 @@ public class PlayerFactory {
    private static final Random RND = new Random();
 
    public static Player create(String type, String name) {
-      return switch (type.toLowerCase()) {
-         case "warrior" -> new Warrior(name, warriorStats());
-         case "mage" -> new Mage(name, mageStats());
-         case "healer" -> new Healer(name, healerStats());
-         case "archer" -> new Archer(name, archerStats());
-         case "witch" -> new Witch(name, witchStats());
+      return create(PlayerType.heroType(type), name);
+   }
+
+   public static Player create(PlayerType type, String name) {
+      return switch (type) {
+         case WARRIOR -> new Warrior(name, warriorStats());
+         case MAGE -> new Mage(name, mageStats());
+         case HEALER -> new Healer(name, healerStats());
+         case ARCHER -> new Archer(name, archerStats());
+         case WITCH -> new Witch(name, witchStats());
          default -> throw new IllegalArgumentException(" Unknown class! " + type);
       };
    }
+
 
    private static Stats warriorStats() {
       return Stats.builder().hp(80 + RND.nextInt(100)).dmg(10, 30).crit(0.4, 2).build();
