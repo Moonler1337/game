@@ -1,7 +1,7 @@
 package model.character;
 
 import java.util.Random;
-
+import model.render.BattleEventRender;
 import combat.BattleEvent;
 import combat.BattleLog;
 import model.stats.Stats;
@@ -68,7 +68,7 @@ public class Player {
         return stats;
     }
 
-    public final int attack(Player target, BattleLog log) {
+    public final int attack(Player target, BattleLog<BattleEvent> log) {
         Stats s = this.stats;
 
 
@@ -105,8 +105,6 @@ public class Player {
 
         }
         return dealt;
-
-
     }
 
     protected int adjustDamage(int base, Player target) {

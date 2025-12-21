@@ -2,8 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 import combat.BattleLog;
+import combat.BattleEvent;
 import model.character.Player;
 import model.character.PlayerFactory;
+import model.render.BattleEventRender;
 
 public class Main {
 
@@ -48,16 +50,15 @@ public class Main {
     System.out.println("--- FIGHT ---");
     boolean first = rnd.nextBoolean();
     int round = 1;
-    BattleLog log = new BattleLog();
-
+    BattleLog<BattleEvent> log = new BattleLog();
 
     while (p1.isAlive() && p2.isAlive()) {
       Player attacker = first ? p1 : p2;
       Player defender = first ? p2 : p1;
 
       System.out.println("--- Round " + round + " ---");
-      attacker.attack(defender, log); // ← цель: defender
-      System.out.print(BattleLog.render(log.drain())); // ← выводим события
+      attacker.attack(defender, log);
+      System.out.print(BattleEventRender.render(log.drain()));
 
       first = !first;
       round++;

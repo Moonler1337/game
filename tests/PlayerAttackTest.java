@@ -9,8 +9,12 @@ import model.character.PlayerFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
+import java.util.function.Function;
+import tests.testutils.TestFixedPlayer;
 import tests.testutils.TestStatsBuilders;
-
+import tests.testutils.TestFixedPlayer;
+import tests.testutils.FixedPlayers;
+import model.render.BattleEventRender;
 
 class PlayerAttackTest {
 
@@ -26,7 +30,7 @@ class PlayerAttackTest {
             int dealt = attacker.attack(defender, log);
             // System.out.println("i= " + i + " damage = " + dealt + " hp= " + defender.getHp());
 
-            String out = BattleLog.render(log.drain());
+            String out = BattleEventRender.render(log.drain());
             System.out.println(out); // для просмотра
 
             assertTrue(initialHp >= defender.getHp());
@@ -53,7 +57,7 @@ class PlayerAttackTest {
                 assertTrue(
                         damage <= attacker.getStats().maxDmg * attacker.getStats().critMultiplier);
                 assertTrue(damage >= 0);
-                String out = BattleLog.render(log.drain());
+                String out = BattleEventRender.render(log.drain());
                 System.out.println(out);
 
                 first = !first;
@@ -76,14 +80,38 @@ class PlayerAttackTest {
         for (int i = 0; i < 100; i++) {
             int hpBefore = defender.getHp();
             int dealt = attacker.attack(defender, null);
+            assertTrue(dealt >= 0 && dealt <= hpBefore);
             if (!defender.isAlive()) {
                 defender = TestStatsBuilders.create("healer", "h2" + ++counter);
 
             }
 
-            assertTrue(dealt >= 0 && dealt <= hpBefore);
+
         }
 
+    }
+
+    @Test
+    void hpDoesNotGoBelowZero_withLogs() {
+        Player attacker = FixedPlayers.attacker("A", 100, 30);
+        Player defender = FixedPlayers.defender("B", 10);
+
+        BattleLog log = new BattleLog();
+
+        for (int i = 0; i < 1000; i++) {
+            if (!defender.isAlive()) {
+                defender = FixedPlayers.defender("B" + i, 10);
+            }
+
+            int hpBefore = defender.getHp();
+            int dealt = attacker.attack(defender, log);
+
+            System.out.print(BattleEventRender.render(log.drain()));
+
+            assertTrue(dealt >= 0);
+            assertTrue(defender.getHp() >= 0);
+            assertTrue(dealt <= hpBefore);
+        }
     }
 
 
