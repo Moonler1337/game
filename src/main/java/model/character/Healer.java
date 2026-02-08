@@ -10,6 +10,9 @@ public class Healer extends Player {
         super(name, stats);
     }
 
-
+    @Override
+    protected int adjustDamage(int base) {
+        return base;
+    }
 }
 

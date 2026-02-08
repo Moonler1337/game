@@ -9,7 +9,7 @@ public class Warrior extends Player {
     }
 
     @Override
-    protected int adjustDamage(int base, Player target) {
+    protected int adjustDamage(int base) {
         boolean crit = stats.critChance > rnd.nextDouble();
         return crit ? base * stats.critMultiplier : base;
     }

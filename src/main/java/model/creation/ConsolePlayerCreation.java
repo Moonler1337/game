@@ -35,7 +35,7 @@ public class ConsolePlayerCreation {
             try {
                 player = PlayerFactory.create(type, name);
             } catch (IllegalArgumentException e) {
-                System.out.println("Ошибка! Такого класса не существует. Попробуйте ещё раз.");
+                System.out.println("Error: unknown class. Please try again.");
             }
         }
 

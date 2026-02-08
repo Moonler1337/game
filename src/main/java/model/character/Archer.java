@@ -7,6 +7,9 @@ public class Archer extends Player {
     super(name, stats);
   }
 
-
+  @Override
+  protected int adjustDamage(int amount) {
+    return 0;
+  }
 }
 

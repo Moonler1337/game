@@ -1,13 +1,13 @@
 {
     "java.project.sourcePaths": [
-        "."
+        "src/main/java"
     ],
     "java.project.referencedLibraries": [
-        "c:\\Users\\Chikipoko\\Desktop\\work\\lib\\junit-platform-console-standalone-1.13.0-M3.jar",
-        "c:\\Users\\Chikipoko\\Desktop\\work\\lib\\opentest4j-1.3.0.jar",
-        "c:\\Users\\Chikipoko\\Desktop\\work\\lib\\junit-jupiter-api-5.10.2.jar",
-        "c:\\Users\\Chikipoko\\Desktop\\work\\lib\\junit-jupiter-engine-5.10.2.jar",
-        "c:\\Users\\Chikipoko\\Desktop\\work\\lib\\apiguardian-api-1.1.2.jar"
+        "${workspaceFolder}/lib/junit-platform-console-standalone-1.13.0-M3.jar",
+        "${workspaceFolder}/lib/opentest4j-1.3.0.jar",
+        "${workspaceFolder}/lib/junit-jupiter-api-5.10.2.jar",
+        "${workspaceFolder}/lib/junit-jupiter-engine-5.10.2.jar",
+        "${workspaceFolder}/lib/apiguardian-api-1.1.2.jar"
     ],
 
     "java.configuration.runtimes": [

@@ -17,12 +17,8 @@ public enum PlayerType {
                 return PlayerType.WITCH;
             default:
                 throw new IllegalArgumentException(
-                        "Введён некорректный класс! Введите правильное название класса");
-
+                        "Invalid class name. Please enter a supported class.");
         }
-
     }
-
-
 
 }

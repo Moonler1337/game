@@ -3,7 +3,6 @@ package model.character;
 import java.util.Random;
 import model.combat.BattleEvent;
 import model.combat.BattleLog;
-import model.render.BattleEventRender;
 import model.stats.Stats;
 
 public class Player {
@@ -17,8 +16,6 @@ public class Player {
         this.name = name;
         this.stats = stats;
         this.hp = stats.maxHp;
-
-
     }
 
     public void heal(int amount) {
@@ -34,8 +31,6 @@ public class Player {
     public String getName() {
         return name;
     }
-
-
 
     public int getHp() {
         return hp;
@@ -58,7 +53,6 @@ public class Player {
         return this.hp - before;
     }
 
-
     @Deprecated
     public void takeDamage(int dmg) {
         applyDamage(this, dmg);
@@ -71,25 +65,26 @@ public class Player {
     public final int attack(Player target, BattleLog<BattleEvent> log) {
         Stats s = this.stats;
 
-
         if (s.healChance > rnd.nextDouble()) {
-
-            int rawHeal = rnd.nextInt(s.minHeal, s.maxHeal + 1);
-            int healed = applyHeal(rawHeal);
-            if (healed > 0 && log != null) {
-                log.add(BattleEvent.heal(this, healed, this.getHp()));
+            if (this.hp >= s.maxHp) {
+                if (log != null) {
+                    log.add(BattleEvent.alreadyFullHp(this, this.getHp()));
+                }
+            } else {
+                int rawHeal = rnd.nextInt(s.minHeal, s.maxHeal + 1);
+                int healed = applyHeal(rawHeal);
+                if (healed > 0 && log != null) {
+                    log.add(BattleEvent.heal(this, healed, this.getHp()));
+                }
+                return 0;
             }
-            return 0; // урона не нанёс
-
         }
-
 
         int base = rollDamage();
 
-        int dmg = adjustDamage(base, target);
+        int dmg = adjustDamage(base);
 
         int dealt = applyDamage(target, dmg);
-
 
         boolean crit = (dmg != base);
         boolean blocked = (dmg > 0 && dealt == 0);
@@ -102,12 +97,11 @@ public class Player {
                 log.add(BattleEvent.dead(this, target));
 
             return dealt;
-
         }
         return dealt;
     }
 
-    protected int adjustDamage(int base, Player target) {
+    protected int adjustDamage(int base) {
 
         return Math.max(0, base);
     }
@@ -117,7 +111,6 @@ public class Player {
         int before = target.hp;
         target.hp = Math.max(0, before - Math.max(0, dmg - defense));
         return before - target.hp;
-
     }
 
     @Override

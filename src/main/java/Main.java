@@ -24,7 +24,7 @@ public class Main {
     System.out.println("--- FIGHT ---");
     boolean first = rnd.nextBoolean();
     int round = 1;
-    BattleLog<BattleEvent> log = new BattleLog();
+    BattleLog<BattleEvent> log = new BattleLog<>();
 
     while (p1.isAlive() && p2.isAlive()) {
       Player attacker = first ? p1 : p2;

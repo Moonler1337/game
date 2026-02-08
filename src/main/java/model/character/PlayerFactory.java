@@ -30,11 +30,12 @@ public class PlayerFactory {
 
 
    private static Stats mageStats() {
-      return Stats.builder().hp(40 + RND.nextInt(40)).dmg(20, 30).defense(10, 15).build();
+      return Stats.builder().hp(40 + RND.nextInt(40)).dmg(20, 30).defense(10, 15).heal(0.3, 20, 30)
+            .build();
    }
 
    private static Stats healerStats() {
-      return Stats.builder().hp(70 + RND.nextInt(40)).dmg(15, 30).heal(0.5, 45, 70).defense(20, 30)
+      return Stats.builder().hp(70 + RND.nextInt(40)).dmg(15, 30).heal(0.5, 15, 80).defense(5, 7)
             .build();
 
    }

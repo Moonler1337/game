@@ -4,11 +4,11 @@ import model.character.Player;
 
 public final class BattleEvent {
     public enum Type {
-        HIT, CRIT_HIT, HEAL, DEAD, BLOCKED
+        HIT, CRIT_HIT, HEAL, DEAD, BLOCKED, FULL_HP
     }
 
     public final Type type;
-    public final String actor; // игрок умирает, логи живёт
+    public final String actor;
     public final String target;
     public final int amount;
     public final int targetHp;
@@ -22,7 +22,6 @@ public final class BattleEvent {
         this.amount = amount;
         this.targetHp = targetHp;
         this.note = note;
-
     }
 
     public static BattleEvent hit(Player a, Player t, int dealt, boolean crit) {
@@ -39,10 +38,11 @@ public final class BattleEvent {
     }
 
     public static BattleEvent blocked(Player attacker, Player defender) {
-        return new BattleEvent(Type.BLOCKED, attacker.getName(), defender.getName(), 0, // урон = 0
-                defender.getHp(), // HP не изменился
-                "blocked");
+        return new BattleEvent(Type.BLOCKED, attacker.getName(), defender.getName(), 0,
+                defender.getHp(), "blocked");
     }
 
-
+    public static BattleEvent alreadyFullHp(Player a, int hp) {
+        return new BattleEvent(Type.FULL_HP, a.getName(), a.getName(), 0, hp, "full_hp");
+    }
 }
