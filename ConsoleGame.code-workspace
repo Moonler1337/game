@@ -1,0 +1,10 @@
+{
+  "folders": [
+    {
+      "path": "game-server"
+    },
+    {
+      "path": "game-client"
+    }
+  ]
+}
