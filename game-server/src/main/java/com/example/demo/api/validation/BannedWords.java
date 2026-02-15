@@ -1,4 +1,4 @@
-package com.example.demo.DTO.Validation;
+package com.example.demo.api.validation;
 
 import java.util.Set;
 
@@ -8,9 +8,9 @@ public final class BannedWords {
     private BannedWords() {}
 
     public static boolean containsBanned(String text) {
-        if (text == null)
+        if (text == null) {
             return false;
-
+        }
         String lower = text.toLowerCase();
         return BANNED_WORDS.stream().anyMatch(lower::contains);
     }

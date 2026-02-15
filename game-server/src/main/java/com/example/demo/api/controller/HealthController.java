@@ -1,7 +1,6 @@
-package com.example.demo.Controller;
+package com.example.demo.api.controller;
 
-import com.example.demo.DTO.ValidationLabDto;
-import com.example.demo.inmemory.BattleEventStore;
+import com.example.demo.api.dto.ValidationLabDto;
 import com.example.demo.inmemory.HealthEventStore;
 import jakarta.validation.Valid;
 import java.util.List;

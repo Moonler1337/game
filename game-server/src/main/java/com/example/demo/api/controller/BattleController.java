@@ -1,6 +1,6 @@
-package com.example.demo.Controller;
+package com.example.demo.api.controller;
 
-import com.example.demo.DTO.BattleEventDto;
+import com.example.demo.api.dto.BattleEventDto;
 import com.example.demo.inmemory.BattleEventStore;
 import jakarta.validation.Valid;
 import java.util.List;

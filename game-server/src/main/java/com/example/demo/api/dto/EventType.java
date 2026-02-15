@@ -1,9 +1,9 @@
-package com.example.demo.DTO;
-
+package com.example.demo.api.dto;
 
 public enum EventType {
-    DAMAGE(1, 100), HEAL(1, 50), DEFENSE(1, 15);
-
+    DAMAGE(1, 100),
+    HEAL(1, 50),
+    DEFENSE(1, 15);
 
     private final int min;
     private final int max;
@@ -21,5 +21,3 @@ public enum EventType {
         return max;
     }
 }
-
-

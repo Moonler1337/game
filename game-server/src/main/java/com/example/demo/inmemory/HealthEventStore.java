@@ -3,7 +3,7 @@ package com.example.demo.inmemory;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.springframework.stereotype.Component;
-import com.example.demo.DTO.ValidationLabDto;
+import com.example.demo.api.dto.ValidationLabDto;
 
 @Component
 public class HealthEventStore {
