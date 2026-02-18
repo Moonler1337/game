@@ -4,7 +4,12 @@ import model.character.Player;
 
 public final class BattleEvent {
     public enum Type {
-        HIT, CRIT_HIT, HEAL, DEAD, BLOCKED, FULL_HP
+        HIT,
+        CRIT_HIT,
+        HEAL,
+        DEAD,
+        BLOCKED,
+        FULL_HP
     }
 
     public final Type type;
@@ -25,7 +30,8 @@ public final class BattleEvent {
     }
 
     public static BattleEvent hit(Player a, Player t, int dealt, boolean crit) {
-        return new BattleEvent(crit ? Type.CRIT_HIT : Type.HIT, a.getName(), t.getName(), dealt,
+        return new BattleEvent(crit ? Type.CRIT_HIT : Type.HIT, a.getName(), t.getName(),
+                dealt,
                 t.getHp(), null);
     }
 
